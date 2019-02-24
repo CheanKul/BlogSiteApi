@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from graphene_django.views import GraphQLView
+from BlogSite.schema import schema
 
 app_name = "main"
 
 urlpatterns = [
     path('home', views.homepage, name="homepage"),
+    path(r'graphql', GraphQLView.as_view(graphiql=True, schema=schema)),
 ]
